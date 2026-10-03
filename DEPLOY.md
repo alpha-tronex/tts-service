@@ -6,7 +6,7 @@ Domain: `tts.alphatronex.com` · internal port: `8300` · container: `tts-servic
 
 ## 0. Check headroom first
 
-The service holds both models in memory, roughly 1–1.5 GB, and is capped at 2 GB in `docker-compose.prod.yml`.
+The service holds both models in memory, roughly 1–1.5 GB, and is capped at 1.5 GB in `docker-compose.prod.yml`.
 
 ```bash
 ssh hetzner
