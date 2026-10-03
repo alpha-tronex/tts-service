@@ -1,0 +1,5 @@
+# Web layer and audio (also what the tests need).
+fastapi>=0.115,<1
+uvicorn[standard]>=0.30,<1
+numpy>=1.26,<3
+lameenc>=1.7,<2

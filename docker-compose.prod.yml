@@ -1,0 +1,22 @@
+# Production on the Hetzner box. nginx (deploy/tts.alphatronex.com.conf) sits in
+# front and terminates TLS; the container only listens on localhost.
+services:
+  tts-service:
+    build: .
+    container_name: tts-service
+    restart: unless-stopped
+    env_file: .env.production
+    ports:
+      - "127.0.0.1:8300:8000"   # check hetzner-infra/hetzner.md that 8300 is free
+    volumes:
+      - tts-models:/models       # model files, downloaded on the first start
+    mem_limit: 2g                # so a bad request can't starve the other apps
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 300s         # first start downloads ~1 GB of models
+
+volumes:
+  tts-models:

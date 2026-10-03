@@ -1,0 +1,7 @@
+# The voice models. Installed in the Docker image only; tests use a fake engine.
+# torch itself is installed from the CPU-only index in the Dockerfile.
+transformers>=4.44,<5
+sentencepiece>=0.2,<1
+datasets>=3.2,<4
+pyarrow>=15
+huggingface_hub>=0.24
